@@ -19,10 +19,7 @@ app.set('view engine', 'ejs');
 const dbURI = 'mongodb+srv://primph:noobie@cluster0.2mjwo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then((result) => {
-    app.listen(3000, () => {
-      console.log('Server started running')
-      console.log('DB Connected')
-    })
+    console.log('DB Connected')
   })
   .catch((err) => console.log(err));
 
@@ -31,3 +28,7 @@ app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
 
 app.use(authRoutes)
+
+app.listen(3000, () => {
+  console.log("Server started running")
+})
