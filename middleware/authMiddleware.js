@@ -27,11 +27,9 @@ const checkUser = (req, res, next) => {
     if (token) {
         jwt.verify(token, 'this is my super secret', async (err, decodedToken) => {
             if (err) {
-                console.log(err.message)
                 res.locals.user = null
                 next()
             } else {
-                console.log(decodedToken)
                 let user = await User.findById(decodedToken.id)
                 res.locals.user = user;
                 next()
@@ -41,8 +39,6 @@ const checkUser = (req, res, next) => {
         res.locals.user = null
         next()
     }
-
-    next()
 }
 
 module.exports = { requireAuth, checkUser };
